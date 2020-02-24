@@ -1,0 +1,21 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="proj1_test_Spring:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/proj1_test_Spring_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="proj1_test_Spring/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="proj1_test_Spring" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Spring-5.2.3.RELEASE" />
+          <element id="library" level="project" name="Spring MVC-5.2.3.RELEASE" />
+          <element id="library" level="project" name="maven" />
+          <element id="library" level="project" name="javax.servlet.jsp.jstl-1.2.1" />
+          <element id="library" level="project" name="mysql-connector-java-5.1.18-bin" />
+          <element id="library" level="project" name="log4j" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
