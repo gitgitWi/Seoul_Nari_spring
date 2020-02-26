@@ -1,4 +1,4 @@
-package org.mybatis.persistence;
+package org.mybatis.repls.dao;
 
 public class ReplsDaoImpl implements ReplsDao {
 }

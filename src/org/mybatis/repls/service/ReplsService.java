@@ -1,4 +1,4 @@
-package org.mybatis.service;
+package org.mybatis.repls.service;
 
 public interface ReplsService {
 }

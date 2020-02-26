@@ -1,4 +1,4 @@
-package org.mybatis.service;
+package org.mybatis.shops.service;
 
 public class NarisServiceImpl implements NarisService {
 }
