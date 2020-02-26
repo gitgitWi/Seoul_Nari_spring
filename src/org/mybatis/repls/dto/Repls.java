@@ -12,7 +12,6 @@ public class Repls implements Serializable {
 //        <result column = "mod_date" property = "modDate" />
 //        <result column = "good" property = "good" />
 
-
     private String idx;
     private String shopNum;
     private String ip;
@@ -20,6 +19,7 @@ public class Repls implements Serializable {
     private String regDate;
     private String modDate;
     private String good;
+
     public Repls() {
 
     }

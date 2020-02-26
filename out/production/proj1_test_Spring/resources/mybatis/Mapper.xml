@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
@@ -21,11 +22,12 @@
         <result column = "place_num" property = "shopNum" />
         <result column = "ip" property = "ip" />
         <result column = "reply" property = "reply" />
-        <result column = "DATE" property = "regDate" />
+        <result column = "reg_date" property = "regDate" />
+        <result column = "mod_date" property = "modDate" />
         <result column = "good" property = "good" />
     </resultMap>
 
-    <select id="list_nari" parameterType = "Naris" resultMap = "shops">
+    <select id="list_shop" parameterType = "Naris" resultMap = "shops">
         SELECT IDX, PLACE_NAME, PRICE_PER_PERSON, PLACE_ADDRESS, REG_DATE, GOOD
         FROM NARI_LIST
         <where>
@@ -37,7 +39,7 @@
     </select>
 
     <select id="list_repl" parameterType="repls" resultMap="repls">
-        SELECT IDX, IP, REPLY, DATE, GOOD
+        SELECT IDX, IP, REPLY, REG_DATE, GOOD
         FROM REPLY
             <where>
                 <if test="shopNum != null and shopNum !=''">PLACE_NUM = #{shopNum}</if>
@@ -45,20 +47,15 @@
         ORDER BY IDX DESC
     </select>
 
-    <select id="select_nari" parameterType = "java.lang.String" resultMap = "shops">
+    <select id="select_shop" parameterType = "java.lang.String" resultMap = "shops">
         SELECT IDX, PLACE_NAME, PRICE_PER_PERSON, PLACE_ADDRESS, REG_DATE, GOOD
         FROM NARI_LIST
         WHERE IDX = #{idx}
     </select>
 
-    <insert id="insert_nari" parameterType="Naris">
+    <insert id="insert_shop" parameterType="Naris">
         INSERT INTO NARI_LIST (PLACE_NAME, PRICE_PER_PERSON, PLACE_ADDRESS, REG_DATE, MOD_DATE, GOOD, HIT)
         VALUES (#{shopName}, #{shopAvgPrice}, #{shopAddr}, now(), now(), 0, 0)
-    </insert>
-
-    <insert id="insert_repl" parameterType="repls">
-        INSERT INTO REPLY (place_num, ip, reply, DATE, GOOD)
-        VALUES (#{shopNum}, #{ip}, #{reply}, now(), 0)
     </insert>
 
     <update id="hitUp" parameterType="java.lang.String">
@@ -85,7 +82,7 @@
         WHERE IDX = #{idx}
     </update>
 
-    <update id="modify_nari" parameterType="Naris">
+    <update id="modify_shop" parameterType="Naris">
         UPDATE NARI_LIST
             <set>
                 <if test="shopName != null"> PLACE_NAME = #{shopName}, </if>
@@ -105,7 +102,7 @@
         WHERE IDX = #{idx}
     </update>
 
-    <delete id="delete_nari" parameterType="java.lang.String">
+    <delete id="delete_shop" parameterType="java.lang.String">
         DELETE FROM NARI_LIST
         WHERE IDX = #{idx}
     </delete>

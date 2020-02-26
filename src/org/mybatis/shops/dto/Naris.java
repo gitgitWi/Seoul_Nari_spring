@@ -15,6 +15,8 @@ public class Naris implements Serializable {
         <result column = "good" property = "good" />
      */
 
+    private String idx;
+    private String shopName;
     private String shopAvgPrice;
     private String shopAddr;
     private String regDate;
@@ -89,8 +91,6 @@ public class Naris implements Serializable {
         this.modDate = modDate;
     }
 
-    private String idx;
-    private String shopName;
 
     public String getHit() {
         return hit;

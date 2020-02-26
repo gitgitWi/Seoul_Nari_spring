@@ -13,7 +13,10 @@
     </facet>
     <facet type="Spring" name="Spring">
       <configuration>
-        <fileset id="fileset" name="Mapper" removed="false">
+        <fileset id="fileset" name="Context Spring" removed="false">
+          <dependency>web spring servlet context</dependency>
+          <file>file://$MODULE_DIR$/src/resources/spring/context-spring.xml</file>
+          <file>file://$MODULE_DIR$/src/resources/spring/context-mybatis.xml</file>
           <file>file://$MODULE_DIR$/src/resources/mybatis/Mapper.xml</file>
         </fileset>
       </configuration>
@@ -32,5 +35,7 @@
     <orderEntry type="library" name="javax.servlet.jsp.jstl-1.2.1" level="project" />
     <orderEntry type="library" name="mysql-connector-java-5.1.18-bin" level="project" />
     <orderEntry type="library" name="log4j" level="project" />
+    <orderEntry type="library" name="javax.annotation-api-1.2" level="project" />
+    <orderEntry type="library" name="myBatis" level="project" />
   </component>
 </module>
