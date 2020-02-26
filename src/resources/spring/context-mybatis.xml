@@ -16,13 +16,15 @@
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" >
         <property name="dataSource" value="dataSource" />
-        <property name="typeAliasesPackage" value="org.mybatis.domain" />
-        <property name="mapperLocations" value="classpath:resources/mybatis/*.xml" />
+        <property name="typeAliasesPackage" value="org.mybatis.dto" />
+        <property name="mapperLocations" value="classpath:resources/mybatis/Mapper.xml" />
     </bean>
 
     <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate" >
         <constructor-arg index="0" ref="sqlSessionFactory" />
     </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager" />
 
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" >
         <property name="dataSource" ref="dataSource"></property>
