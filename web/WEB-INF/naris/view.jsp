@@ -16,6 +16,9 @@
             width: 80%;
             text-align: center;
         }
+        footer {
+            text-align: right;
+        }
     </style>
 </head>
 <body>
@@ -40,8 +43,10 @@
 
 </div>
 <hr>
+<footer>
 <input type = "button" value="수정" onclick="location.href='/naris/modify/${m.idx }'" /> &nbsp;&nbsp;&nbsp;
 <input type = "button" value="삭제" onclick="location.href='/naris/delete/${m.idx }'" /> &nbsp;&nbsp;&nbsp;
 <input type = "button" value="목록으로" onclick="location.href='<c:url value="/naris/list?searchType=${param.searchType}&searchText=${param.SearchText }" />'" />
+</footer>
 </body>
 </html>
