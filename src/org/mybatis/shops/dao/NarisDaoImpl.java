@@ -51,4 +51,5 @@ public class NarisDaoImpl extends SqlSessionDaoSupport implements NarisDao {
     public void good_nari(String idx) {
         getSqlSession().update("org.mybatis.shops.dao.Mapper.good_nari", idx);
     }
+
 }

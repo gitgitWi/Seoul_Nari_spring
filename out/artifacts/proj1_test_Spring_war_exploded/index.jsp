@@ -11,37 +11,36 @@
   <title>SEOUL NARI</title>
 </head>
 <style>
-  body {
-    background-position: center;
-  }
   div.main {
     position: relative;
     top : 20%;
+    color: #565656;
+    text-align: center;
   }
   #logo_font {
     font-size: 120px;
     font-style: italic;
+    background-color: #ffdf00;
   }
   .sch {
-    height: 50px; padding: 5px;
+    height: 50px;
+    padding: 5px;
     width: 400px;
+    background-color: #cfcfcf;
   }
   #btn {
-    color: darkslateblue;
-    background-color: lavender;
+    background-color: #ffdf00;
     border-style : solid;
-    border-color: darkslateblue;
-    border-width: 1px;
+    border-color: #565656;
+    border-width: 2px;
     width: 100px;
-    padding: 0px;
     cursor: pointer;
-    user-select: auto;
   }
 </style>
 <body>
-<div class="main" align="center" style = "color: darkslateblue">
+<div class="main" >
   <div id="logo_font" > SEOUL NARI </div><br>
-  <form action="list" method="GET" >
+  <form action="naris/list" method="GET" >
     <input class="sch" type="search" name = "searchText">&nbsp;&nbsp;&nbsp;&nbsp;
     <input class="sch" id = "btn" type="submit" value="이리오너라!" />
   </form>

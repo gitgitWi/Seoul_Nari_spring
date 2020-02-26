@@ -26,6 +26,11 @@ public class ReplsServiceImpl implements ReplsService {
     }
 
     @Override
+    public Repls select_repls(String idx) {
+        return this.rd.select_repl(idx);
+    }
+
+    @Override
     @Transactional
     public void modify_repls(Repls repls) {
         this.rd.modify_repl(repls);
@@ -42,4 +47,5 @@ public class ReplsServiceImpl implements ReplsService {
     public void good_repls(String idx) {
         this.rd.good_repl(idx);
     }
+
 }

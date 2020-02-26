@@ -24,6 +24,16 @@ public class Repls implements Serializable {
 
     }
 
+    public Repls(String idx, String shopNum, String ip, String reply, String regDate, String modDate, String good) {
+        this.idx = idx;
+        this.shopNum = shopNum;
+        this.ip = ip;
+        this.reply = reply;
+        this.regDate = regDate;
+        this.modDate = modDate;
+        this.good = good;
+    }
+
     public String getIdx() {
         return idx;
     }

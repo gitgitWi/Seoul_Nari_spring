@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
@@ -22,40 +21,51 @@
         <result column = "place_num" property = "shopNum" />
         <result column = "ip" property = "ip" />
         <result column = "reply" property = "reply" />
-        <result column = "reg_date" property = "regDate" />
-        <result column = "mod_date" property = "modDate" />
+        <result column = "DATE" property = "regDate" />
         <result column = "good" property = "good" />
     </resultMap>
 
-    <select id="list_shop" parameterType = "Naris" resultMap = "shops">
-        SELECT IDX, PLACE_NAME, PRICE_PER_PERSON, PLACE_ADDRESS, REG_DATE, GOOD
+    <select id="list_nari" parameterType = "Naris" resultMap = "shops">
+        SELECT IDX, PLACE_NAME, PRICE_PER_PERSON, PLACE_ADDRESS, REG_DATE, mod_date, hit, GOOD
         FROM NARI_LIST
         <where>
+            <if test="searchType == null"> PLACE_NAME LIKE CONCAT('%',#{searchText},'%') OR PLACE_ADDRESS LIKE CONCAT('%',#{searchText},'%') </if>
             <if test="searchType == 'ALL'"> PLACE_NAME LIKE CONCAT('%',#{searchText},'%') OR PLACE_ADDRESS LIKE CONCAT('%',#{searchText},'%') </if>
             <if test="searchType == 'NAME'"> PLACE_NAME LIKE CONCAT('%',#{searchText},'%') </if>
             <if test="searchType == 'ADDRESS'"> PLACE_ADDRESS LIKE CONCAT('%',#{searchText},'%') </if>
         </where>
-        ORDER BY GOOD DESC
+        ORDER BY mod_date DESC
     </select>
 
-    <select id="list_repl" parameterType="repls" resultMap="repls">
-        SELECT IDX, IP, REPLY, REG_DATE, GOOD
+    <select id="list_repl" parameterType="Repls" resultMap="repls">
+        SELECT IDX, IP, REPLY, DATE, GOOD
         FROM REPLY
             <where>
-                <if test="shopNum != null and shopNum !=''">PLACE_NUM = #{shopNum}</if>
+                <if test="shopNum != null or shopNum !=''">PLACE_NUM = #{shopNum}</if>
             </where>
         ORDER BY IDX DESC
     </select>
 
-    <select id="select_shop" parameterType = "java.lang.String" resultMap = "shops">
-        SELECT IDX, PLACE_NAME, PRICE_PER_PERSON, PLACE_ADDRESS, REG_DATE, GOOD
+    <select id="select_nari" parameterType = "java.lang.String" resultMap = "shops">
+        SELECT IDX, PLACE_NAME, PRICE_PER_PERSON, PLACE_ADDRESS, REG_DATE, GOOD, mod_date, hit
         FROM NARI_LIST
         WHERE IDX = #{idx}
     </select>
 
-    <insert id="insert_shop" parameterType="Naris">
+    <select id="select_repl" parameterType = "java.lang.String" resultMap = "shops">
+        SELECT reply, place_num
+        FROM reply
+        WHERE IDX = #{idx}
+    </select>
+
+    <insert id="insert_nari" parameterType="Naris">
         INSERT INTO NARI_LIST (PLACE_NAME, PRICE_PER_PERSON, PLACE_ADDRESS, REG_DATE, MOD_DATE, GOOD, HIT)
         VALUES (#{shopName}, #{shopAvgPrice}, #{shopAddr}, now(), now(), 0, 0)
+    </insert>
+
+    <insert id="insert_repl" parameterType="Repls">
+        INSERT INTO REPLY (place_num, reply, DATE, GOOD)
+        VALUES (#{shopNum}, #{reply}, now(), 0)
     </insert>
 
     <update id="hitUp" parameterType="java.lang.String">
@@ -82,18 +92,18 @@
         WHERE IDX = #{idx}
     </update>
 
-    <update id="modify_shop" parameterType="Naris">
+    <update id="modify_nari" parameterType="Naris">
         UPDATE NARI_LIST
             <set>
                 <if test="shopName != null"> PLACE_NAME = #{shopName}, </if>
-                <if test="shopAvgPrice != null"> PRICE_PER_PERSON = #{shopName}, </if>
-                <if test="shopAddr != null"> PLACE_ADDRESS = #{shopName}, </if>
+                <if test="shopAvgPrice != null"> PRICE_PER_PERSON = #{shopAvgPrice}, </if>
+                <if test="shopAddr != null"> PLACE_ADDRESS = #{shopAddr}, </if>
                 MOD_DATE = NOW()
             </set>
         WHERE IDX = #{idx}
     </update>
 
-    <update id="modify_repl" parameterType="repls">
+    <update id="modify_repl" parameterType="Repls">
         UPDATE REPLY
         <set>
             <if test="reply != null"> reply = #{reply}, </if>
@@ -102,7 +112,7 @@
         WHERE IDX = #{idx}
     </update>
 
-    <delete id="delete_shop" parameterType="java.lang.String">
+    <delete id="delete_nari" parameterType="java.lang.String">
         DELETE FROM NARI_LIST
         WHERE IDX = #{idx}
     </delete>

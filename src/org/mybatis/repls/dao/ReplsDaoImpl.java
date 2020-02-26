@@ -4,7 +4,6 @@ import org.mybatis.repls.dto.Repls;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -29,6 +28,11 @@ public class ReplsDaoImpl extends SqlSessionDaoSupport implements ReplsDao {
     }
 
     @Override
+    public Repls select_repl(String idx) {
+        return getSqlSession().selectOne("org.mybatis.shops.dao.Mapper.select_repl", idx);
+    }
+
+    @Override
     public void modify_repl(Repls repls) {
         getSqlSession().selectList("org.mybatis.shops.dao.Mapper.modify_repl", repls);
     }
@@ -42,4 +46,5 @@ public class ReplsDaoImpl extends SqlSessionDaoSupport implements ReplsDao {
     public void good_repl(String idx) {
         getSqlSession().selectList("org.mybatis.shops.dao.Mapper.good_repl", idx);
     }
+
 }
