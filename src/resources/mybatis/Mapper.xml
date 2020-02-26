@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "org.mybatis.shops.dao.Mapper">
+
+    <resultMap type = "org.mybatis.shops.dto.Naris" id = "shops" >
+        <id column="idx" property = "idx" />
+        <result column = "place_name" property = "shopName" />
+        <result column = "price_per_person" property = "shopAvgPrice" />
+        <result column = "place_address" property = "shopAddr" />
+        <result column = "reg_date" property = "regDate" />
+        <result column = "mod_date" property = "modDate" />
+        <result column = "hit" property = "hit" />
+        <result column = "good" property = "good" />
+    </resultMap>
+
+    <resultMap type = "org.mybatis.repls.dto.Repls" id = "repls">
+        <id column="idx" property = "idx" />
+        <result column = "place_num" property = "shopNum" />
+        <result column = "ip" property = "ip" />
+        <result column = "reply" property = "reply" />
+        <result column = "reg_date" property = "regDate" />
+        <result column = "mod_date" property = "modDate" />
+        <result column = "good" property = "good" />
+    </resultMap>
+
+    <select id="list_shop" parameterType = "Naris" resultMap = "shops">
+        SELECT IDX, PLACE_NAME, PRICE_PER_PERSON, PLACE_ADDRESS, REG_DATE, GOOD
+        FROM TABLE_NARI
+        <where>
+            <if test="searchType == 'ALL'"> PLACE_NAME LIKE CONCAT('%',#{searchText},'%') OR PLACE_ADDRESS LIKE CONCAT('%',#{searchText},'%') </if>
+            <if test="searchType == 'NAME'"> PLACE_NAME LIKE CONCAT('%',#{searchText},'%') </if>
+            <if test="searchType == 'ADDRESS'"> PLACE_ADDRESS LIKE CONCAT('%',#{searchText},'%') </if>
+        </where>
+        ORDER BY GOOD DESC
+    </select>
+
+    <select id="list_repl" parameterType="repls" resultMap="repls">
+        SELECT IDX, IP, REPLY, REG_DATE, GOOD
+        FROM REPLY
+            <where>
+                <if test="shopNum != null and shopNum !=''">PLACE_NUM = #{shopNum}</if>
+            </where>
+        ORDER BY IDX DESC
+    </select>
+
+    <select id="select_shop" parameterType = "java.lang.String" resultMap = "shops">
+        SELECT IDX, PLACE_NAME, PRICE_PER_PERSON, PLACE_ADDRESS, REG_DATE, GOOD
+        FROM NARI_LIST
+        WHERE IDX = #{idx}
+    </select>
+
+    <insert id="insert_shop" parameterType="Naris">
+        INSERT INTO NARI_LIST (PLACE_NAME, PRICE_PER_PERSON, PLACE_ADDRESS, REG_DATE, MOD_DATE, GOOD, HIT)
+        VALUES (#{shopName}, #{shopAvgPrice}, #{shopAddr}, now(), now(), 0, 0)
+    </insert>
+
+    <update id="hitUp" parameterType="java.lang.String">
+        UPDATE NARI_LIST
+            <set>
+                hit = hit + 1
+            </set>
+        WHERE IDX = #{idx}
+    </update>
+
+    <update id="good_nari" parameterType="java.lang.String">
+        UPDATE NARI_LIST
+        <set>
+            good = good + 1
+        </set>
+        WHERE IDX = #{idx}
+    </update>
+
+    <update id="good_repl" parameterType="java.lang.String">
+        UPDATE REPLY
+        <set>
+            good = good + 1
+        </set>
+        WHERE IDX = #{idx}
+    </update>
+
+    <update id="modify_shop" parameterType="Naris">
+        UPDATE NARI_LIST
+            <set>
+                <if test="shopName != null"> PLACE_NAME = #{shopName}, </if>
+                <if test="shopAvgPrice != null"> PRICE_PER_PERSON = #{shopName}, </if>
+                <if test="shopAddr != null"> PLACE_ADDRESS = #{shopName}, </if>
+                MOD_DATE = NOW()
+            </set>
+        WHERE IDX = #{idx}
+    </update>
+
+    <update id="modify_repl" parameterType="repls">
+        UPDATE REPLY
+        <set>
+            <if test="reply != null"> reply = #{reply}, </if>
+            MOD_DATE = NOW()
+        </set>
+        WHERE IDX = #{idx}
+    </update>
+
+    <delete id="delete_shop" parameterType="java.lang.String">
+        DELETE FROM NARI_LIST
+        WHERE IDX = #{idx}
+    </delete>
+
+    <delete id="delete_repl" parameterType="java.lang.String">
+        DELETE FROM REPLY
+        WHERE IDX = #{idx}
+    </delete>
+
+</mapper>
