@@ -16,6 +16,7 @@
 <head>
     <title>Seoul Naris</title>
     <style>
+
         div.resultfont {
             text-align: center;
             color: #565656;
@@ -29,11 +30,15 @@
         }
 
         .SEARCH {
-            alignment: right;
+            text-align: center;
         }
 
         #SEARCH_BAR {
             height: 60px;
+        }
+        #SEARCH_TEXT {
+            height: 60px;
+            WIDTH : 700PX;
         }
 
         #SEARCH_BTN {
@@ -62,13 +67,28 @@
             text-align: center;
 
         }
+        #thf {
+            background-color: #565656;
+            color: #cfcfcf;
+            height: 70px;
+        }
+        #head {
+            text-align: left;
+            font-weight: bolder;
+            font-size: 40px;
+            font-style: italic;
+            color: #5f00ff;
+            background-color: #ffffff;
+            border: 0px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
-<h1>Seoul Nari Stores</h1>
+<input type="button" value="Seoul Nari Stores" ONCLICK="location.href='../index.jsp'" id = "head" /> <p>
 <div class="SEARCH">
     <form action="list" method="GET">
-        <INPUT ID="SEARCH_BAR" TYPE="search" NAME="searchText" value="<c:out value="${searchText}"/>">
+        <INPUT ID="SEARCH_TEXT" TYPE="search" NAME="searchText" value="<c:out value="${searchText}"/>">
         <SELECT ID="SEARCH_BAR" name="searchType">
             <option VALUE="ALL" selected> 전부 다</option>
             <option VALUE="NAME"
@@ -106,14 +126,23 @@
 
     <c:otherwise>
         <div class="resultfont">
-            <table>
-                <tr class="textalign">
-                    <td></td>
-                    <td class="textalign">1인 평균 금액!</td>
-                    <td class="textalign">주소</td>
-                    <td class="textalign">등록일</td>
-                    <td class="textalign">조회수</td>
-                    <td class="textalign">좋아요</td>
+            <table class="textalign" >
+                <colgroup>
+                    <col width="200px">
+                    <col width="150px">
+                    <col width="500px">
+                    <col width="150px">
+                    <col width="100px">
+                    <col width="100px">
+                </colgroup>
+
+                <tr class="textalign" id="thf">
+                    <th ></th>
+                    <th class="textalign">1인 평균 금액!</th>
+                    <th class="textalign">주소</th>
+                    <th class="textalign">등록일</th>
+                    <th class="textalign">조회수</th>
+                    <th class="textalign">좋아요</th>
 
                 </tr>
                 <c:forEach var="place" items="${list}" varStatus="p">

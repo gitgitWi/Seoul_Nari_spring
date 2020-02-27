@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component inherit-compiler-output="true" inheritJdk="true">
+	<output-test url="file://$MODULE_DIR$/out/test/proj1_test_Spring"/>
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$"/>
+	<levels>
+		<level name="Spring-5.2.3.RELEASE" value="project"/>
+		<level name="Spring MVC-5.2.3.RELEASE" value="project"/>
+		<level name="maven" value="project"/>
+		<level name="javax.servlet.jsp.jstl-1.2.1" value="project"/>
+		<level name="mysql-connector-java-5.1.18-bin" value="project"/>
+		<level name="log4j" value="project"/>
+		<level name="javax.annotation-api-1.2" value="project"/>
+		<level name="myBatis" value="project"/>
+	</levels>
+</component>

@@ -39,7 +39,7 @@
 </style>
 <body>
 <div class="main" >
-  <div id="logo_font" > SEOUL NARI </div><br>
+  <div id="logo_font" > SEOUL NARI </div><br><br><br><P>
   <form action="naris/list" method="GET" >
     <input class="sch" type="search" name = "searchText">&nbsp;&nbsp;&nbsp;&nbsp;
     <input class="sch" id = "btn" type="submit" value="이리오너라!" />

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="/proj1_test_Spring/src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Spring-5.2.3.RELEASE"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Spring MVC-5.2.3.RELEASE"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/maven"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/javax.servlet.jsp.jstl-1.2.1"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/mysql-connector-java-5.1.18-bin"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/log4j"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/javax.annotation-api-1.2"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/myBatis"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

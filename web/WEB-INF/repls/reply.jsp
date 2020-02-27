@@ -29,6 +29,9 @@
         position: relative;
         right: 0%;
     }
+    #center_al {
+        text-align: center;
+    }
 </style>
 
 <div class="reply">
@@ -38,32 +41,33 @@
 
     <c:choose>
         <c:when test="${repls.size() == 0}"> <br><i>아직 평가가 없어요ㅠㅠ</i> </c:when>
+
         <c:otherwise>
+            <table>
+            <colgroup>
+                <col width="150px">
+                <col width="400px">
+                <col width="300px">
+                <col width="150px">
+            </colgroup>
+            <tr>
+                <th>ip</th>
+                <th>reply</th>
+                <th>date</th>
+                <th> </th>
+            </tr>
+
             <c:forEach var="rp" items="${repls}" varStatus="r">
-                <table>
-                    <colgroup>
-                        <col width="150px">
-                        <col width="400px">
-                        <col width="100px">
-                        <col width="100px">
-                    </colgroup>
+
                     <tr>
-                        <th>ip</th>
-                        <th>reply</th>
-                        <th>date</th>
-                        <th> </th>
-                    </tr>
-                    <tr>
-                        <td><c:out value="[${fn:substring(rp.ip, 0, 6) }***]"/></td>
+                        <td id="center_al"><c:out value="[${fn:substring(rp.ip, 0, 6) }***]"/></td>
                         <td><c:out value="${rp.reply }"/></td>
-                        <td>[ <c:out value="${rp.regDate}"/> ]</td>
-                        <td><input type="button" value="댓글 삭제"
+                        <td id="center_al">[ <c:out value="${rp.regDate}"/> ]</td>
+                        <td id="center_al"><input type="button" value="댓글 삭제"
                                    onclick="location.href='delreplcheck.jsp?idx=${rp.idx }&placeNum=${rp.shopNum}&searchText=${param.searchText}&searchType=${param.searchType}'"/></td>
                     </tr>
-
-                </table>
-
             </c:forEach>
+            </table>
         </c:otherwise>
 
     </c:choose>
